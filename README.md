@@ -14,5 +14,7 @@ Post any suggestions in Issues, I will check it and add it here ;)
   - Wazuh Alerts in Telegram (https://medium.com/@jesusjimsa_12801/integrating-telegram-with-wazuh-4d8db91025f)
   
 ## Useful tools:
+  - Sigma to Wazuh rules converter (https://github.com/theflakes/sigma_to_wazuh)
+  - Another Sigma to Wazuh rules converter (https://github.com/SanWieb/sigWah)
 
 ## Rules examples:
