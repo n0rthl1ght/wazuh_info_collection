@@ -16,5 +16,8 @@ Post any suggestions in Issues, I will check it and add it here ;)
 ## Useful tools:
   - Sigma to Wazuh rules converter (https://github.com/theflakes/sigma_to_wazuh)
   - Another Sigma to Wazuh rules converter (https://github.com/SanWieb/sigWah)
+  - Sysmon config from Ion Storm (https://github.com/ion-storm/sysmon-config)
+  - Repo of Sysmon configuration modules (https://github.com/olafhartong/sysmon-modular)
 
 ## Rules examples:
+  - Advanced Wazuh Rules from SOCFortress (https://github.com/socfortress/Wazuh-Rules)
