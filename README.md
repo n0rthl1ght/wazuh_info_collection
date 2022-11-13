@@ -35,4 +35,3 @@ Post any suggestions in Issues, I will check it and add it here ;)
 ## Rules examples:
   - Advanced Wazuh Rules from SOCFortress (https://github.com/socfortress/Wazuh-Rules)
   - OFFICE 365 - MITRE ENRICHED EVENTS USING WAZUH DETECTION RULES (https://github.com/juaromu/wazuh-office365-mitre)
-  - 
