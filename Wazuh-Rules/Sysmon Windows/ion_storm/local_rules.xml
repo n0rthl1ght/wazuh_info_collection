@@ -1157,5 +1157,250 @@
         <id>T1203</id>
       </mitre>
     </rule>
+<!-- !!! it's not mistake -->
+    <rule id="225126" level="12">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^ttack=T1595,Technique=Active Scanning</field>
+      <description>Active Scanning Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1595</id>
+      </mitre>
+    </rule>
+<!-- !!! -->
+    <rule id="225127" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1200,Technique=Hardware Additions</field>
+      <description>Hardware Additions Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1200</id>
+      </mitre>
+    </rule>
 
+    <rule id="225128" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T0000,DS=Windows Registry: Windows Registry Key Modification</field>
+      <description>Windows Registry Key Modification Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1565.001</id>
+        <id>T1112<id>
+      </mitre>
+    </rule>
+
+    <rule id="225129" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1060,Technique=Registry Autorun Keys</field>
+      <description>Registry Autorun Keys Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1060</id>
+      </mitre>
+    </rule>
+     
+    <rule id="225130" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1136,Technique=Create Account</field>
+      <description>Create Account Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1136</id>
+      </mitre>
+    </rule>
+
+    <rule id="225131" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1546.001,Technique=Event Triggered Execution</field>
+      <description>Event Triggered Execution Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1546.001</id>
+      </mitre>
+    </rule>
+
+    <rule id="225132" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1137,Technique=Office Application Startup</field>
+      <description>Office Application Startup Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1137</id>
+      </mitre>
+    </rule>
+
+    <rule id="225133" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1546.015,Technique=Event Triggered Execution</field>
+      <description>Event Triggered Execution Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1546.015</id>
+      </mitre>
+    </rule>
+
+    <rule id="225134" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1546,Technique=Event Triggered Execution</field>
+      <description>Event Triggered Execution Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1546</id>
+      </mitre>
+    </rule>
+
+    <rule id="225135" level="8">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1053,Technique=Scheduled Task</field>
+      <description>Scheduled Task Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1053</id>
+      </mitre>
+    </rule>
+
+    <rule id="225136" level="8">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1548.002,Technique=Abuse Elevation Control Mechanism: Bypass User Account Control</field>
+      <description>Abuse Elevation Control Mechanism: Bypass User Account Control Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1548.002</id>
+      </mitre>
+    </rule>
+
+    <rule id="225137" level="12">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1564.002,Technique=Hide Artifacts: Hidden Users</field>
+      <description>Abuse Elevation Control Mechanism: Bypass User Account Control Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1564.002</id>
+      </mitre>
+    </rule>
+
+    <rule id="225138" level="12">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1564.002,Technique=Hide Artifacts: Hidden Users</field>
+      <description>Abuse Elevation Control Mechanism: Bypass User Account Control Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1564.002</id>
+      </mitre>
+    </rule>
+
+    <rule id="225139" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Technique=Disabling Security Tools</field>
+      <description>Disabling Security Tools Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1562.001</id>
+      </mitre>
+    </rule>
+
+    <rule id="225140" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1562.001,Technique=Impair Defenses</field>
+      <description>Impair Defenses Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1562.001</id>
+      </mitre>
+    </rule>
+
+    <rule id="225141" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1070.001,Technique=Impair Defenses: Disable Windows Event Logging</field>
+      <description>Disable Windows Event Logging Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1070.001</id>
+      </mitre>
+    </rule>
+
+    <rule id="225142" level="1">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1489,Technique=Service Stop</field>
+      <description>Service Stop Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1489</id>
+      </mitre>
+    </rule>
+
+    <rule id="225143" level="4">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1543.003,Technique=Create or Modify System Process: Windows Service</field>
+      <description>Create or Modify System Process: Windows Service Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543.003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225144" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1562.010,Technique=Impair Defenses</field>
+      <description>Impair Defenses Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1562.010</id>
+      </mitre>
+    </rule>
+
+    <rule id="225145" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1562.010,Technique=Impair Defenses</field>
+      <description>Impair Defenses Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1562.010</id>
+      </mitre>
+    </rule>
+
+<!--antivirus testing-->
+    <rule id="225146" level="7">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Antivirus</field>
+      <description>Antivirus alert on $(win.system.computer)</description>
+      <mitre>
+        <id>T1027</id>
+      </mitre>
+    </rule>
+
+    <rule id="225147" level="7">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1096,Technique=Alternate Data Streams</field>
+      <description>Alternate Data Streams Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1096</id>
+      </mitre>
+    </rule>
+
+    <rule id="225148" level="12">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1071,Technique=Application Layer Protocol</field>
+      <description>Application Layer Protocol Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1071</id>
+      </mitre>
+    </rule>
+
+    <rule id="225149" level="12">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1055,Technique=Process Injection</field>
+      <description>Process Injection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225150" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1077,Technique=Windows Admin Shares</field>
+      <description>Windows Admin Shares Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1077</id>
+      </mitre>
+    </rule>
+
+    <rule id="225151" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1059,Technique=Powershell</field>
+      <description>Powershell Connection to github Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1059</id>
+      </mitre>
+    </rule>
+
+    <rule id="225152" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=T1496,Technique=Resource Hijacking</field>
+      <description>PResource HijackingDetected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1496</id>
+      </mitre>
+    </rule>
+    
 </group>
