@@ -1182,7 +1182,7 @@
       <description>Windows Registry Key Modification Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1565.001</id>
-        <id>T1112<id>
+        <id>T1112</id>
       </mitre>
     </rule>
 
@@ -1397,10 +1397,10 @@
     <rule id="225152" level="10">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1496,Technique=Resource Hijacking</field>
-      <description>PResource HijackingDetected on $(win.system.computer)</description>
+      <description>Resource HijackingDetected on $(win.system.computer)</description>
       <mitre>
         <id>T1496</id>
       </mitre>
     </rule>
-    
+
 </group>
