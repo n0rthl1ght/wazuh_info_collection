@@ -24,7 +24,7 @@
     <rule id="225001" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1087,Technique=Account Discovery</field>
-      <field name="win.eventdata.parentImage" negate="yes">C:\\Program Files (x86)\\ossec-agent\\wazuh-agent.exe</field>
+      <field name="win.eventdata.parentImage" negate="yes">^C:\\Program Files (x86)\\ossec-agent\\wazuh-agent.exe</field>
       <description>Account Discovery Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1087</id>
@@ -79,9 +79,6 @@
     <rule id="225007" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1189,Technique=Drive-by Compromise</field>
-      <field name="win.eventdata.ParentImage">iexplore.exe||chrome.exe||firefox.exe||browser_broker.exe||microsoftedge.exe||microsoftedgecp.exe||brave.exe||vivaldi.exe</field>
-      <field name="win.eventdata.Image">tracert.exe||csc.exe||cscript.exe||wscript.exe||cmd.exe||powershell.exe||bash.exe||scrcons.exe||schtasks.exe||hh.exe||regsvr32.exe||regsvcs.exe||sh.exe||wmic.exe||mshta.exe||rundll32.exe||msiexec.exe||forfiles.exe||scriptrunner.exe||mftrace.exe||AppVLP.exe||svchost.exe||MicroScMgmt.exe||FLTLDR.exe||wmic.exe||Microsoft.Workflow.Compiler.exe||atbroker.exe||bginfo.exe||certutil.exe||csi.exe||dnx.exe||cdb.exe||bitsadmin.exe||forfiles.exe||fsi.exe||ftp.exe||hostname.exe||gpresult.exe||ipconfig.exe||nbtstat.exe||ping.exe||pwsh.exe||qprocess.exe||quser.exe||qwinsta.exe||reg.exe||svchost.exe||installutil.exe||pwsh.exe||msxsl.exe||ieexec.exe||msdt.exe||verclsid.exe</field>
-      <field name="win.eventdata.ParentCommandLine">apt-config</field>
       <description>Drive-by Compromise Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1189</id>
@@ -91,7 +88,6 @@
     <rule id="225008" level="7">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1189,Technique=Drive-by Compromise</field>
-      <field name="win.eventdata.Image" negate="yes">C:\\Windows\\Setup||C:\\Windows\\SysWOW64||C:\\Windows\\WinSxS</field>
       <description>Drive-by Compromise Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1189</id>
@@ -101,9 +97,6 @@
     <rule id="225009" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1190,Technique=Exploit Public-Facing Application</field>
-      <field name="win.eventdata.ParentImage">w3wp.exe</field>
-      <field name="win.eventdata.Image" negate="yes">\\csc.exe||\\TranscodingService.exe||\\werfault.exe||\\appcmd.exe</field>
-      <field name="win.eventdata.Image">arp.exe||at.exe||cscript.exe||wscript.exe||cmd.exe||powershell.exe||bash.exe||scrcons.exe||schtasks.exe||hh.exe||regsvr32.exe||sh.exe||ping.exe||whoami.exe||net.exe||net1.exe||systeminfo.exe||bitsadmin.exe||dsget.exe||dsquery.exe||find.exe||findstr.exe||fsutil.exe||hostname.exe||ipconfig.exe||nbtstat.exe||net.exe||net1.exe||netdom.exe||netsh.exe||netstat.exe||nltest.exe||nslookup.exe||ntdutil.exe||pathping.exe||qprocess.exe||query.exe||qwinsta.exe||reg.exe||rundll32.exe||sc.exe||schtasks.exe||systeminfo.exe||tasklist.exe||tracert.exe||ver.exe||vssadmin.exe||wevtutil.exe||whoami.exe||wmic.exe||wusa.exe||certutil.exe</field>
       <description>Exploit Public-Facing Application Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1190</id>
@@ -701,6 +694,7 @@
     <rule id="225075" level="10">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1484.001,Technique=Group Policy Discovery</field>
+      <field name="win.eventdata.parentImage" negate="yes">^C:\\Program Files (x86)\\ossec-agent\\wazuh-agent.exe</field>
       <description>Group Policy Discovery Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1484.001</id>
@@ -1397,10 +1391,1645 @@
     <rule id="225152" level="10">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1496,Technique=Resource Hijacking</field>
-      <description>Resource HijackingDetected on $(win.system.computer)</description>
+      <description>Resource Hijacking Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1496</id>
       </mitre>
     </rule>
 
+    <!-- SYSMON EVENT ID 1 : PROCESS CREATION -->
+    
+    <rule id="225153" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Creation,UEBA=Unusual Child Process,Risk=30$</field>
+      <description>UEBA=Unusual Child Process Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543</id>
+      </mitre>
+    </rule>
+
+    <rule id="225154" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Creation,UEBA=Unusual Print Spooler Child Process,Risk=30$</field>
+      <description>UEBA=Unusual Print Spooler Child Process Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543</id>
+      </mitre>
+    </rule>
+
+    <rule id="225155" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Creation,Level=0,Desc=InstallUtil 1$</field>
+      <description>InstallUtil 1 Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543</id>
+        <id>T1218</id>
+      </mitre>
+    </rule>
+
+    <rule id="225156" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Creation,Level=0,Desc=InstallUtil 2$</field>
+      <description>InstallUtil 2 Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543</id>
+        <id>T1218</id>
+      </mitre>
+    </rule>
+
+    <rule id="225157" level="8">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Creation,Level=0,Desc=Possible Lateral Movmt via Office Application,Risk=80$</field>
+      <description>Possible Lateral Movmt via Office Application Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543</id>
+      </mitre>
+    </rule>
+
+    <rule id="225158" level="12">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Creation,Level=4,Alert=Crypto Currency Miner Detected,Attack=T1496,Technique=Resource Hijacking$</field>
+      <description>Crypto Currency Miner Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543</id>
+      </mitre>
+    </rule>
+
+    <rule id="225159" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Creation,Level=0,Desc=SVCHost Processes$</field>
+      <description>SVCHost Processes Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543</id>
+      </mitre>
+    </rule>
+
+    <rule id="225160" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Creation,Level=3,Desc=Suspicious pipe via commandline$</field>
+      <description>Suspicious pipe via commandline Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1543</id>
+      </mitre>
+    </rule>
+
+    <!--SYSMON EVENT ID 3 : NETWORK CONNECTION INITIATED [NetworkConnect]-->
+
+    <rule id="225161" level="12">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Cobalt Strike Team Server port,Risk=70$</field>
+      <description>Cobalt Strike Team Server port Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225162" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Outbound SMTP Email Sending,Risk=10$</field>
+      <description>Outbound SMTP Email Sending Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225163" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Inbound Windows SVCHost Network Connection$</field>
+      <description>Inbound Windows SVCHost Network Connection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225164" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Outbound Windows SVCHost Network Connection$</field>
+      <description>Outbound Windows SVCHost Network Connection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225165" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Outbound Non-System port 445 SMB connections$</field>
+      <description>Outbound Non-System port 445 SMB connections Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225166" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Outbound Non-System port 389 LDAP connections$</field>
+      <description>Outbound Non-System port 389 LDAP connections Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225167" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Inbound LDAP Connections$</field>
+      <description>Inbound LDAP Connections Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225168" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=4,Alert=Notepad connecting to the internet$</field>
+      <description>Notepad connecting to the internet Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225169" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Browsers accessing non-standard ports$</field>
+      <description>Browsers accessing non-standard ports Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225170" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Social Networking$</field>
+      <description>Social Networkings Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225171" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Internet Relay Chat,Risk=70$</field>
+      <description>Internet Relay Chat Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225172" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Internet Chat,Risk=20$</field>
+      <description>Internet Chat Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225173" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Apache Webserver$</field>
+      <description>Apache Webserver Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225173" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Apache Webserver$</field>
+      <description>Apache Webserver Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225174" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=JAVA Network Connections$</field>
+      <description>JAVA Network Connections Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225175" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Microsoft IIS Webserver$</field>
+      <description>Microsoft IIS Webserver Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225176" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=PHP Webserver$</field>
+      <description>PHP Webserver Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225177" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Setup Network connectivity$</field>
+      <description>Setup Network connectivity Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225178" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Tomcat Webserver connectivity$</field>
+      <description>Tomcat Webserver connectivity Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225179" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Uninstaller Network connectivity$</field>
+      <description>Uninstaller Network connectivity Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225180" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Unknown Process Connecting to network$</field>
+      <description>Unknown Process Connecting to network Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225181" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Windows Explorer Network Connection"$</field>
+      <description>Windows Explorer Network Connection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225182" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Windows SMTP Server$</field>
+      <description>Windows SMTP Server Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225183" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Web Browser HTTP Connections$</field>
+      <description>Web Browser HTTP Connections Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225184" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Non-Browsers Accessing HTTPS$</field>
+      <description>Non-Browsers Accessing HTTPS Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225185" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Non-Browsers Accessing HTTP$</field>
+      <description>Non-Browsers Accessing HTTP Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225186" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Connection Creation,Level=0,Desc=Web Browser HTTPS Connections$</field>
+      <description>Web Browser HTTPS Connections Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+<!--SYSMON EVENT ID 5 : PROCESS ENDED [ProcessTerminate]-->
+
+    <rule id="225187" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination Events in Windows Directory$</field>
+      <description>Process Termination Events in Windows Directory Detected on $(win.system.computer)</description>
+    </rule>
+
+    <rule id="225188" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination Events in System32$</field>
+      <description>Process Termination Events in System32 Detected on $(win.system.computer)</description>
+    </rule>
+
+    <rule id="225189" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination of Sysmon$</field>
+      <description>Process Termination of Sysmon Detected on $(win.system.computer)</description>
+    </rule>
+
+    <rule id="225190" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination Events in Root folders$</field>
+      <description>Process Termination Events in Root folders Detected on $(win.system.computer)</description>
+    </rule>
+
+    <rule id="225191" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination Events of UNC File Paths$</field>
+      <description>Process Termination Events of UNC File Paths Detected on $(win.system.computer)</description>
+    </rule>
+
+    <rule id="225192" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination Events in Users Directory$</field>
+      <description>Process Termination Events in Users Directory Detected on $(win.system.computer)</description>
+    </rule>
+
+    <rule id="225193" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination Events in ProgramData Directory$</field>
+      <description>Process Termination Events in ProgramData Directory Detected on $(win.system.computer)</description>
+    </rule>
+
+    <rule id="225194" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination Events in Program Files Directories$</field>
+      <description>Process Termination Events in Program Files Directories Detected on $(win.system.computer)</description>
+    </rule>
+
+    <rule id="225195" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Termination,Level=0,Desc=Process Termination Events in inetpub Directories$</field>
+      <description>Process Termination Events in inetpub Directories Detected on $(win.system.computer)</description>
+    </rule>
+
+<!--SYSMON EVENT ID 7 : DLL (IMAGE) LOADED BY PROCESS [ImageLoad]-->
+
+    <rule id="225196" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=VBE7 Macro Image Loads with wshom,Risk=70$</field>
+      <description>VBE7 Macro Image Loads with wshom Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225197" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Suspicious Process Loading ntkrnlmp.exe,Risk=50$</field>
+      <description>Suspicious Process Loading ntkrnlmp.exe Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225198" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Equation editor loading itself,Risk=50$</field>
+      <description>Equation editor loading itself Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225199" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=VBE6 Macro Image Loads with wshom,Risk=40$</field>
+      <description>VBE6 Macro Image Loads with wshom Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225200" level="3">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=VBE7 Macro Image Loads with wmi,Risk=30$</field>
+      <description>VBE7 Macro Image Loads with wmi Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225201" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=VBE6 Macro Image Loads with wmi,Risk=50$</field>
+      <description>VBE6 Macro Image Loads with wmi Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225202" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Office taskschd.dll Load$</field>
+      <description>Office taskschd.dll Load Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225203" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=WScript taskschd.dll Load$</field>
+      <description>WScript taskschd.dll Load Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+     <rule id="225204" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=WMI taskschd.dll Load$</field>
+      <description>WMI taskschd.dll Load Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225205" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Powershell Loading MSI.dll$</field>
+      <description>Powershell Loading MSI.dll Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225206" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Powershell Loading AMSI.dll$</field>
+      <description>Powershell Loading AMSI.dl Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225207" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Powershell Not Loading AMSI.dll$</field>
+      <description>Powershell Not Loading AMSI.dll Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+     <rule id="225208" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=1,Desc=Monitor logoncli.dll dll loads for injection - potential qbot activity$</field>
+      <description>onitor logoncli.dll dll loads for injection - potential qbot activity Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225209" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Office clr.dll Load$</field>
+      <description>Office clr.dll Load Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225210" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Suspicious clr windows management dll Load$</field>
+      <description>Suspicious clr windows management dll Load Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225211" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Wscript Internet Access library Loads$</field>
+      <description>Wscript Internet Access library Loads Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225212" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Wscript Internet Access library Loads 2$</field>
+      <description>Wscript Internet Access library Loads 2 Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225213" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Interesting Installutil DLL Loads$</field>
+      <description>Interesting Installutil DLL Loads Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>   
+
+    <rule id="225214" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Automation NI DLL Loaded$</field>
+      <description>Automation NI DLL Loaded Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+    
+    <rule id="225215" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Automation DLL Loaded$</field>
+      <description>Automation DLL Loaded Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>  
+
+    <rule id="225216" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Credential Manager DLL Loaded$</field>
+      <description>Credential Manager DLL Loaded Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+    
+    <rule id="225217" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=UNC Path Image Loaded$</field>
+      <description>UNC Path Image Loaded Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>  
+
+    <rule id="225218" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=WLL Office Application Startup$</field>
+      <description>WLL Office Application Startup Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+    
+    <rule id="225219" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=XLL Office Application Startup$</field>
+      <description>XLL Office Application Startup Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>  
+
+    <rule id="225220" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Office Application Startup Generic$</field>
+      <description>Office Application Startup Generic Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+    
+    <rule id="225221" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Potential C3 Framework,Risk=100$</field>
+      <description>Potential C3 Framework Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>  
+
+    <rule id="225222" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Explorer Loading Powershell in memory,Risk=100$</field>
+      <description>Explorer Loading Powershell in memory Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+    
+    <rule id="225223" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Programdata Image Loading exe Image from Programdata$</field>
+      <description>Programdata Image Loading exe Image from Programdata Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>  
+
+    <rule id="225224" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=SVCHost loading Unsigned DLL$</field>
+      <description>SVCHost loading Unsigned DLL Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225225" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Revoked Signature Libraries Loaded$</field>
+      <description>Revoked Signature Libraries Loaded Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225226" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=Expired Signature Libraries Loaded$</field>
+      <description>Expired Signature Libraries Loaded Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225227" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=4,Alert=HTA Exec with IE JS Engine AMSI Bypass$</field>
+      <description>HTA Exec with IE JS Engine AMSI Bypass Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225228" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=1,Desc=Unsigned Global Assembly Cache Load$</field>
+      <description>Unsigned Global Assembly Cache Load Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225229" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=1,Desc=Signed Global Assembly Cache Load$</field>
+      <description>Signed Global Assembly Cache Load Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225230" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=XLL Office Application Startup removal$</field>
+      <description>XLL Office Application Startup removal Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225231" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Module: Module Load,Level=0,Desc=SVCHost Signed DLL$</field>
+      <description>SVCHost Signed DLL Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1055.001</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+	<!--SYSMON EVENT ID 8 : REMOTE THREAD CREATED [CreateRemoteThread]-->
+
+    <rule id="225232" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Modification,Alert=Potentially Detect EtwEventWrite Tampering with remote threads$</field>
+      <description>Potentially Detect EtwEventWrite Tampering with remote threads Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225233" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=0,Desc=Dotnet Debugging detected,Risk=30$</field>
+      <description>Dotnet Debugging detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225234" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=0,Alert=DInvoke detected,Risk=100$</field>
+      <description>DInvoke detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+     <rule id="225235" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=0,Desc=Suspicious Process Accessing Sysmon,Risk=50$</field>
+      <description>Suspicious Process Accessing Sysmon Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225236" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=0,Desc=Powershell accessing another process memory$</field>
+      <description>Powershell accessing another process memory Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225237" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=0,Desc=Potential Keylogger detected,Risk=100$</field>
+      <description>Potential Keylogger detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225238" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=4,Alert=Typical ProcessAccess Pattern of CobaltStrike BOF$</field>
+      <description>Typical ProcessAccess Pattern of CobaltStrike BOF Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225239" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=3,Alert=Potential MalDoc Behavior$</field>
+      <description>Potential MalDoc Behavior Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225240" level="10">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=4,Alert=Potential Metasploit Process Migration$</field>
+      <description>Potential Metasploit Process Migration Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+
+    <rule id="225241" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Process: Process Access,Level=0,Desc=Direct System Call Events$</field>
+      <description>Direct System Call Event Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1003</id>
+        <id>T1055</id>
+      </mitre>
+    </rule>
+<!--SYSMON EVENT ID 11 : FILE CREATED [FileCreate]-->
+    <rule id="225242" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Suspicious files within Content.IE5,Risk=40$</field>
+      <description>Suspicious files within Content.IE5 Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225242" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Unusual OLE ActiveX execution from Microsoft Office,Risk=20$</field>
+      <description>Unusual OLE ActiveX execution from Microsoft Office Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225243" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New Executable File Detected in System32$</field>
+      <description>New Executable File Detected in System32 Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225244" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New Executable File Detected in Windows Directory$</field>
+      <description>New Executable File Detected in Windows Directory Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225245" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New Executable File Detected Outside Windows Directory$</field>
+      <description>New Executable File Detected Outside Windows Directory Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225246" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New Executable File Detected Inside User Directory$</field>
+      <description>New Executable File Detected Inside User Directory Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225247" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=WLL Office Application Startup$</field>
+      <description>WLL Office Application Startup Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225248" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc= Windows Defender Application Control changes$</field>
+      <description>Windows Defender Application Control changes Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225249" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=XLL Office Application Startup$</field>
+      <description>XLL Office Application Startup Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225250" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Outlook Macro Execution,Risk=90$</field>
+      <description>Outlook Macro Execution Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225251" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Office Application Startup Generic$</field>
+      <description>Office Application Startup Generic Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225252" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Office VSTO Addin detected,Risk=20$</field>
+      <description>Office VSTO Addin detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225253" level="5">
+      <if_group>sysmon_event1</if_group>
+      <!--<field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New bat file dropped to C:\Windows\,Risk=70$</field>-->
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New bat file dropped to C:\Windows</field>
+      <description>New bat file dropped to C:\Windows\ Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225254" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New dll file dropped to C:\Windows\$</field>
+      <description>New dll file dropped to C:\Windows\ Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225255" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New Driver sys file dropped to C:\Windows\$</field>
+      <description>New Driver sys file dropped to C:\Windows\ Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225256" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New Exe file dropped to C:\Windows\$</field>
+      <description>New Exe file dropped to C:\Windows\ Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225257" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New Exe file dropped to C:\Windows\System32$</field>
+      <description>New Exe file dropped to C:\Windows\System32 Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225258" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^AAttack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=New theme: Credential harvesting$</field>
+      <description>New theme: Credential harvesting Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225259" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Interesting files: Microsoft Office Isolated Conversion Environment$</field>
+      <description>Microsoft Office Isolated Conversion Environment Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225260" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Virtualbox VM Escape$</field>
+      <description>Virtualbox VM Escape Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225261" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Legacy Office files$</field>
+      <description>Legacy Office files Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225262" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Certificate$</field>
+      <description>Certificate Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225263" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Creation,Level=0,Desc=Sideload Detection$</field>
+      <description>Sideload Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+	<!--SYSMON EVENT ID 12 & 13 & 14 : REGISTRY MODIFICATION [RegistryEvent]-->
+    <rule id="225264" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Forensic=RDP Connection History Tracking$</field>
+      <description>RDP Connection History Tracking Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225265" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Interactive Logon Detected$</field>
+      <description>Interactive Logon Detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225266" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Lokibot Detection$</field>
+      <description>Lokibot Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225267" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=AMSI Tamper Detection$</field>
+      <description>AMSI Tamper Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225268" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Forensic=Chrome Extension auditing$</field>
+      <description>Chrome Extension auditing Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225269" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Forced password reset detected$</field>
+      <description>Forced password reset detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225270" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Machine Password Change Detected$</field>
+      <description>Machine Password Change Detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225271" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=User Last Password Changed$</field>
+      <description>User Last Password Changed Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225270" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Account Expiration$</field>
+      <description>Account Expiration Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225271" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Last Failed Logon$</field>
+      <description>Last Failed Logon Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225272" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=User Account Added to Local Admin$</field>
+      <description>User Account Added to Local Admin Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225273" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=User Account Added to Remote Desktop User Group$</field>
+      <description>ser Account Added to Remote Desktop User Group Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225274" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=3,Alert=Sysmon Manifest change detected,Risk=30$</field>
+      <description>Sysmon Manifest change detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225275" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Scheduled Task Creation ID Key$</field>
+      <description>Scheduled Task Creation ID Key Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225276" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Scheduled Task Creation Author Key$</field>
+      <description>Scheduled Task Creation Author Key Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225277" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Scheduled Task Creation Path Key$</field>
+      <description>Scheduled Task Creation Path Key Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225278" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Scheduled Task Creation Date Key$</field>
+      <description>Scheduled Task Creation Date Key Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225279" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Scheduled Task Added to Logon$</field>
+      <description>Scheduled Task Added to Logon Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225280" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Scheduled Task Added to Boot Time$</field>
+      <description>Scheduled Task Added to Boot Time Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225281" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Task Manager Disablement Detection$</field>
+      <description>Task Manager Disablement Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225282" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Outlook Security Changes$</field>
+      <description>Outlook Security Changes Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225283" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Globally Opened Firewall port exceptions$</field>
+      <description>Globally Opened Firewall port exceptions Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225284" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Forensic=Regedit history Detection,Risk=30$</field>
+      <description>Regedit history Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225285" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Symbolic Registry Link Created$</field>
+      <description>Symbolic Registry Link Created Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225286" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Suspicious Location Registry Change Detected$</field>
+      <description>Suspicious Location Registry Change Detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225287" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Right to Left hidden Registry key,Risk=40$</field>
+      <description>Right to Left hidden Registry key Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225288" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Detect System Certificate Modifications$</field>
+      <description>Detect System Certificate Modifications Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225289" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Unicode Replacement Character in Registry key,Risk=20$</field>
+      <description>Unicode Replacement Character in Registry key Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225290" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Cryillic Character in Registry key,Risk=100$</field>
+      <description>Cryillic Character in Registry key Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225291" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Git For Windows Detection: Revil: Sodinokibi,Risk=50$</field>
+      <description>Git For Windows Detection: Revil: Sodinokibi Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225292" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Lanmanserver Parameters Registry Change Detected$</field>
+      <description>Lanmanserver Parameters Registry Change Detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225293" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Lanmanworkstation Parameters Registry Change Detected$</field>
+      <description>Lanmanworkstation Parameters Registry Change Detecte Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225294" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=TS Farm Disable RDP Detection$</field>
+      <description>TS Farm Disable RDP Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225295" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Forensic=Regedit history Detection,Risk=30$</field>
+      <description>Regedit history Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225296" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=TS Farm Drain Mode Modification Detection$</field>
+      <description>TS Farm Drain Mode Modification Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225297" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Forensic=IE history Detection$</field>
+      <description>IE history Detection Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225298" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=IPv6 Changes detected: Disabled Components$</field>
+      <description>IPv6 Changes detected: Disabled Components Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225299" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=IPv6 Changes detected$</field>
+      <description>IPv6 Changes Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225300" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Network Card Changes detected$</field>
+      <description>Network Card Changes Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225301" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Service Listening Ports with URL ACL INFO$</field>
+      <description>Service Listening Ports with URL ACL INFO Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225302" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Forensic=Adobe Recent File List History$</field>
+      <description>Adobe Recent File List History Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225303" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Forensic=Office History MRU$</field>
+      <description>Office History MRU Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225304" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Desc=Sysmon Config Hash Modification Monitoring$</field>
+      <description>Sysmon Config Hash Modification Monitoring Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225305" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Forensic=AmCache Application Installation Info$</field>
+      <description>AmCache Application Installation Info Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225306" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Forensic=AmCache Application File Inf$</field>
+      <description>AmCache Application File Inf Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225307" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Forensic=AmCache AppV Application Inventory$</field>
+      <description>AmCache AppV Application Inventory Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+    <rule id="225308" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Windows Registry: Windows Registry Key Modification,Level=0,Forensic=AmCache Office Information$</field>
+      <description>AmCache Office Information Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1112</id>
+      </mitre>
+    </rule>
+
+	<!--SYSMON EVENT ID 15 : ALTERNATE DATA STREAM CREATED [FileCreateStreamHash]-->
+
+    <rule id="225309" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Metadata,Level=0,Desc=Interesting Files temp locations,Risk=10$</field>
+      <description>Interesting Files temp locations Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+    <rule id="225310" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=File: File Metadata,Level=4,Alert=HTML_Smuggling,Risk=50$</field>
+      <description>HTML_Smuggling Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1204</id>
+        <id>T1003</id>
+      </mitre>
+    </rule>
+
+	<!--SYSMON EVENT ID 17 & 18 : PIPE CREATED / PIPE CONNECTED [PipeEvent]-->
+
+    <rule id="225311" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^ttack=None,Technique=None,Tactic=None,DS=Named Pipe: Named Pipe Metadata,Level=4,Forensic=Detect suspicious named pipe connections to an AD FS WID,Author=Florian Roth$</field>
+      <description>Detect suspicious named pipe connections to an AD FS WID Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1570</id>
+      </mitre>
+    </rule>
+
+    <rule id="225312" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Traffic Content,Level=0,Desc=Suspicious DNS Requests$</field>
+      <description>Suspicious DNS Requests Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225314" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Traffic Content,Level=0,Desc=Social Networking$</field>
+      <description>Social Networking Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225315" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Traffic Content,Level=0,Desc=Internet Relay Chat,Risk=70$</field>
+      <description>Internet Relay Chat Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225316" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Traffic Content,Level=0,Desc=Internet Chat,Risk=20$</field>
+      <description>Internet Chat Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225317" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Traffic Content,Level=0,Desc=Suspicious Domain,Risk=20$</field>
+      <description>Suspicious Domain Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225318" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Traffic Content,Level=3,Desc=Suspicious LDAP Lookup - Useful for identifying tools like sharphound,Risk=90$</field>
+      <description>Suspicious LDAP Lookup - Useful for identifying tools like sharphound Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+
+    <rule id="225319" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Traffic Content,Level=0,Desc=Process Tampering Detected$</field>
+      <description>Process Tampering Detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
+
+    <rule id="225320" level="5">
+      <if_group>sysmon_event1</if_group>
+      <field name="win.eventdata.ruleName">^Attack=None,Technique=None,Tactic=None,DS=Network Traffic: Network Traffic Content,Level=0,Desc=exclude common noise$</field>
+      <description>exclude common noise Detected Detected on $(win.system.computer)</description>
+      <mitre>
+        <id>T1028</id>
+        <id>T1021</id>
+      </mitre>
+    </rule>
 </group>
