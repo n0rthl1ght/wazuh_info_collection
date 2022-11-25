@@ -12,7 +12,7 @@
 
 <group name="sysmon,">
     
-    <rule id="225000" level="12">
+    <rule id="225002" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1595.002,Technique=Vulnerability Scanning</field>
       <description>Vulnerability Scanning Detected on $(win.system.computer)</description>
@@ -21,17 +21,17 @@
       </mitre>
     </rule>
 
-    <rule id="225001" level="12">
+    <rule id="225003" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1087,Technique=Account Discovery</field>
-      <field name="win.eventdata.parentImage" negate="yes">^C:\\Program Files (x86)\\ossec-agent\\wazuh-agent.exe</field>
+      <field name="win.eventdata.parentImage" type="pcre2" negate="yes">wazuh-agent.exe</field>
       <description>Account Discovery Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1087</id>
       </mitre>
     </rule>
 
-    <rule id="225002" level="4">
+    <rule id="225004" level="4">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1587,Technique=Develop Capabilities</field>
       <description>Develop Capabilities Detected on $(win.system.computer)</description>
@@ -40,7 +40,7 @@
       </mitre>
     </rule>
 
-    <rule id="225003" level="4">
+    <rule id="225005" level="4">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1587.003,Technique=Develop Capabilities: Digital Certificates</field>
       <description>Develop Capabilities Detected on $(win.system.computer)</description>
@@ -49,7 +49,7 @@
       </mitre>
     </rule>
 
-    <rule id="225004" level="4">
+    <rule id="225006" level="4">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1587.003,Technique=Develop Capabilities: Digital Certificates</field>
       <description>Develop Capabilities Digital Certificates Detected on $(win.system.computer)</description>
@@ -58,30 +58,12 @@
       </mitre>
     </rule>
 
-    <rule id="225005" level="4">
+    <rule id="225007" level="4">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1566.001,Technique=Phishing: Spear Phishing Attachment</field>
       <description>Phishing: Spear Phishing Attachment Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1566.001</id>
-      </mitre>
-    </rule>
-
-    <rule id="225006" level="7">
-      <if_group>sysmon_event1</if_group>
-      <field name="win.eventdata.ruleName">^Attack=T1189,Technique=Drive-by Compromise</field>
-      <description>Drive-by Compromise Detected on $(win.system.computer)</description>
-      <mitre>
-        <id>T1189</id>
-      </mitre>
-    </rule>
-
-    <rule id="225007" level="12">
-      <if_group>sysmon_event1</if_group>
-      <field name="win.eventdata.ruleName">^Attack=T1189,Technique=Drive-by Compromise</field>
-      <description>Drive-by Compromise Detected on $(win.system.computer)</description>
-      <mitre>
-        <id>T1189</id>
       </mitre>
     </rule>
 
@@ -135,7 +117,7 @@
       <field name="win.eventdata.ruleName">^Attack=T1204,Technique=User Execution</field>
       <description>Powershell ran from Scripting Utilities Detected on $(win.system.computer)</description>
       <mitre>
-        <id>T1204</id>
+        <id>T1059.001</id>
       </mitre>
     </rule>
 
@@ -149,7 +131,7 @@
       </mitre>
     </rule>
 
-    <rule id="225015" level="5">
+    <rule id="225015" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1059,Technique=Visual Basic</field>
       <description>Visual Basic Detected on $(win.system.computer)</description>
@@ -158,7 +140,7 @@
       </mitre>
     </rule> 
 
-    <rule id="225016" level="7">
+    <rule id="225016" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1059,Technique=Scripting</field>
       <description>Scripting Detected on $(win.system.computer)</description>
@@ -203,7 +185,7 @@
       </mitre>
     </rule>
 
-    <rule id="225021" level="5">
+    <rule id="225021" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1133,Technique=External Remote Services</field>
       <description>External Remote Services Detected on $(win.system.computer)</description>
@@ -221,7 +203,7 @@
       </mitre>
     </rule>
 
-   <rule id="225023" level="12">
+   <rule id="225023" level="7">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1053.005,Technique=Scheduled Task/Job</field>
       <description>Scheduled Task/Job Detected on $(win.system.computer)</description>
@@ -230,7 +212,7 @@
       </mitre>
     </rule>
 
-    <rule id="225024" level="3">
+    <rule id="225024" level="7">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1569.002,Technique=Service Execution</field>
       <description>Service Execution Detected on $(win.system.computer)</description>
@@ -266,7 +248,7 @@
       </mitre>
     </rule>
 
-    <rule id="225028" level="10">
+    <rule id="225028" level="7">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1027,Technique=Obfuscated Files or Information</field>
       <field name="win.eventdata.commandLine" type="pcre2" negate="yes" >USB Attached||USB Mass</field>
@@ -285,7 +267,7 @@
       </mitre>
     </rule>
 
-    <rule id="225030" level="8">
+    <rule id="225030" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1098,Technique=Account Manipulation</field>
       <description>Account Manipulation Detected on $(win.system.computer)</description>
@@ -294,7 +276,7 @@
       </mitre>
     </rule>
 
-    <rule id="225031" level="8">
+    <rule id="225031" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1098,Technique=Create Account</field>
       <description>Create Account Detected on $(win.system.computer)</description>
@@ -303,7 +285,7 @@
       </mitre>
     </rule>
 
-    <rule id="225032" level="8">
+    <rule id="225032" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1183,Technique=Image File Execution Options Injection</field>
       <description>Image File Execution Options Injection Detected on $(win.system.computer)</description>
@@ -322,7 +304,7 @@
       </mitre>
     </rule>
 
-    <rule id="225034" level="11">
+    <rule id="225034" level="10">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1548,Tactic=Defense Evasion,Technique</field>
       <description>Defense Evasion,Technique Detected on $(win.system.computer)</description>
@@ -340,7 +322,7 @@
       </mitre>
     </rule>
 
-    <rule id="225036" level="3">
+    <rule id="225036" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1548.002,Technique=Abuse Elevation Control Mechanism</field>
       <description>Abuse Elevation Control Mechanism Detected on $(win.system.computer)</description>
@@ -367,7 +349,7 @@
       </mitre>
     </rule>
 
-    <rule id="225039" level="9">
+    <rule id="225039" level="7">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1546.008,Technique=Exploitation for Privilege Escalation</field>
       <description>Exploitation for Privilege Escalation Detected on $(win.system.computer)</description>
@@ -376,7 +358,7 @@
       </mitre>
     </rule>
 
-    <rule id="225040" level="9">
+    <rule id="225040" level="7">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1484.001,Technique=Group Policy Modification</field>
       <description>Group Policy Modification Detected on $(win.system.computer)</description>
@@ -601,7 +583,7 @@
       </mitre>
     </rule>
 
-    <rule id="225065" level="12">
+    <rule id="225065" level="8">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1218,Technique=Signed Binary Proxy Execution</field>
       <description>Signed Binary Proxy Execution Detected on $(win.system.computer)</description>
@@ -673,7 +655,7 @@
       </mitre>
     </rule>
 
-    <rule id="225073" level="12">
+    <rule id="225073" level="7">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1003,Technique=OS Credential Dumping</field>
       <description>OS Credential Dumping Detected on $(win.system.computer)</description>
@@ -694,14 +676,14 @@
     <rule id="225075" level="10">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1484.001,Technique=Group Policy Discovery</field>
-      <field name="win.eventdata.parentImage" negate="yes">^C:\\Program Files (x86)\\ossec-agent\\wazuh-agent.exe</field>
+       <field name="win.eventdata.parentImage" type="pcre2" negate="yes">wazuh-agent.exe</field>
       <description>Group Policy Discovery Detected on $(win.system.computer)</description>
       <mitre>
         <id>T1484.001</id>
       </mitre>
     </rule>
 
-    <rule id="225076" level="1">
+    <rule id="225076" level="5">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1057,Technique=Process Discovery</field>
       <description>Process Discovery Detected on $(win.system.computer)</description>
@@ -728,7 +710,7 @@
       </mitre>
     </rule>
 
-    <rule id="225079" level="7">
+    <rule id="225079" level="12">
       <if_group>sysmon_event1</if_group>
       <field name="win.eventdata.ruleName">^Attack=T1033,Technique=System Owner/User Discovery</field>
       <description>Owner/User Discovery Detected on $(win.system.computer)</description>
@@ -3011,7 +2993,6 @@
         <id>T1021</id>
       </mitre>
     </rule>
-
 
     <rule id="225319" level="5">
       <if_group>sysmon_event1</if_group>
