@@ -2,9 +2,9 @@
 | :bangbang: Important|
 | :--- |
 
-Before you go, you need create Destanation for alerts:
+Before you go, you need create Destination for alerts:
 
-[Opensearch destanations](https://opensearch.org/docs/latest/monitoring-plugins/alerting/monitors/#create-destinations)
+[Opensearch destinations](https://opensearch.org/docs/latest/monitoring-plugins/alerting/monitors/#create-destinations)
 
 [Opensearch docs](https://opensearch.org/docs/latest)
 
