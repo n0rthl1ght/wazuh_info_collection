@@ -10,7 +10,7 @@ except Exception:
     sys.exit(1)
 
 #CHAT_ID="xxxx"
-CHAT_ID="-1001362167819"
+CHAT_ID=""
 
 def create_message(alert_json):
     # Get alert information
