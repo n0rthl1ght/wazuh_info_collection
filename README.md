@@ -42,7 +42,7 @@ Post any suggestions in Issues, I will check it and add it here ;)
   - OFFICE 365 - MITRE ENRICHED EVENTS USING WAZUH DETECTION RULES (https://github.com/juaromu/wazuh-office365-mitre)
 
 ## Updates:
+  - Added auditd rules - thx to sm0ke87 (https://github.com/sm0ke87)
   - Added Opensearch plugin alerting - thx to sm0ke87 (https://github.com/sm0ke87)
   - Added Wazuh rules based on Ion Storm Sysmon config - thx to sm0ke87 (https://github.com/sm0ke87)
   - Added files for Telegram Notifications
-  - Added new sources and posts
